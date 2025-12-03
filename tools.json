@@ -1,0 +1,253 @@
+{
+  "name": "postman-tools",
+  "version": "1.0.0",
+  "description": "Complete API lifecycle management tools for Postman",
+  "type": "command-line-tools",
+  "categories": {
+    "discovery": [
+      {
+        "name": "list_collections",
+        "script": "scripts/list_collections.py",
+        "description": "List all Postman collections, environments, monitors, and APIs",
+        "usage": "python scripts/list_collections.py [--all] [--environments] [--monitors] [--apis]",
+        "examples": [
+          "python scripts/list_collections.py --all",
+          "python scripts/list_collections.py --environments"
+        ]
+      },
+      {
+        "name": "list_workspaces",
+        "script": "scripts/list_workspaces.py",
+        "description": "List all Postman workspaces",
+        "usage": "python scripts/list_workspaces.py",
+        "examples": [
+          "python scripts/list_workspaces.py"
+        ]
+      }
+    ],
+    "collections": [
+      {
+        "name": "manage_collections",
+        "script": "scripts/manage_collections.py",
+        "description": "Full CRUD operations for Postman collections",
+        "usage": "python scripts/manage_collections.py [--list|--get|--create|--update|--delete|--duplicate] [OPTIONS]",
+        "examples": [
+          "python scripts/manage_collections.py --list",
+          "python scripts/manage_collections.py --get <collection-id>",
+          "python scripts/manage_collections.py --create --name='My API'",
+          "python scripts/manage_collections.py --duplicate <collection-id> --name='Copy'"
+        ]
+      },
+      {
+        "name": "manage_collection_workflow",
+        "script": "scripts/manage_collection_workflow.py",
+        "description": "Import collections from OpenAPI, compare versions, duplicate",
+        "usage": "python scripts/manage_collection_workflow.py [create|import|duplicate|compare] [OPTIONS]",
+        "examples": [
+          "python scripts/manage_collection_workflow.py import --name='User API' --spec-file=openapi.json",
+          "python scripts/manage_collection_workflow.py compare --id1=<id1> --id2=<id2>"
+        ]
+      }
+    ],
+    "environments": [
+      {
+        "name": "manage_environments",
+        "script": "scripts/manage_environments.py",
+        "description": "Full CRUD operations for Postman environments",
+        "usage": "python scripts/manage_environments.py [--list|--get|--create|--update|--delete|--duplicate] [OPTIONS]",
+        "examples": [
+          "python scripts/manage_environments.py --list",
+          "python scripts/manage_environments.py --create --name='Development'",
+          "python scripts/manage_environments.py --duplicate <env-id> --name='Staging'"
+        ]
+      }
+    ],
+    "design": [
+      {
+        "name": "manage_api",
+        "script": "scripts/manage_api.py",
+        "description": "Create and manage APIs with OpenAPI schemas (legacy API Builder)",
+        "usage": "python scripts/manage_api.py [--list|--get|--name|--spec-file] [OPTIONS]",
+        "examples": [
+          "python scripts/manage_api.py --name='Payment API' --spec-file=openapi.json",
+          "python scripts/manage_api.py --list",
+          "python scripts/manage_api.py --get <api-id>"
+        ]
+      },
+      {
+        "name": "manage_spec",
+        "script": "scripts/manage_spec.py",
+        "description": "Create and manage specifications in Spec Hub (recommended)",
+        "usage": "python scripts/manage_spec.py [create|list|get|generate-collection] [OPTIONS]",
+        "examples": [
+          "python scripts/manage_spec.py create --name='User API' --file=openapi.json",
+          "python scripts/manage_spec.py list",
+          "python scripts/manage_spec.py generate-collection --spec-id=<id> --collection-name='My Collection'"
+        ]
+      },
+      {
+        "name": "validate_schema",
+        "script": "scripts/validate_schema.py",
+        "description": "Validate OpenAPI specifications for correctness and best practices",
+        "usage": "python scripts/validate_schema.py [--api|--spec|--file] <ID_OR_PATH>",
+        "examples": [
+          "python scripts/validate_schema.py --api <api-id>",
+          "python scripts/validate_schema.py --spec <spec-id>",
+          "python scripts/validate_schema.py --file openapi.json"
+        ]
+      },
+      {
+        "name": "detect_breaking_changes",
+        "script": "scripts/detect_breaking_changes.py",
+        "description": "Detect breaking changes between API versions",
+        "usage": "python scripts/detect_breaking_changes.py [--api|--spec|--collection|--file] [OPTIONS]",
+        "examples": [
+          "python scripts/detect_breaking_changes.py --api <api-id> --old-version <v1> --new-version <v2>",
+          "python scripts/detect_breaking_changes.py --collection <col-id-1> <col-id-2>",
+          "python scripts/detect_breaking_changes.py --file old.json new.json"
+        ]
+      }
+    ],
+    "develop": [
+      {
+        "name": "generate_code",
+        "script": "scripts/generate_code.py",
+        "description": "Generate code snippets from collections in multiple languages (curl, Python, JavaScript, Node.js, Go)",
+        "usage": "python scripts/generate_code.py --collection <collection-id> [--language|--all]",
+        "examples": [
+          "python scripts/generate_code.py --collection <id> --language python",
+          "python scripts/generate_code.py --collection <id> --all"
+        ]
+      }
+    ],
+    "testing": [
+      {
+        "name": "run_collection",
+        "script": "scripts/run_collection.py",
+        "description": "Execute collection test runs with optional environment",
+        "usage": "python scripts/run_collection.py --collection=<name-or-id> [--environment=<name-or-id>]",
+        "examples": [
+          "python scripts/run_collection.py --collection='Payment API'",
+          "python scripts/run_collection.py --collection=<id> --environment='Production'"
+        ]
+      }
+    ],
+    "security": [
+      {
+        "name": "audit_security",
+        "script": "scripts/audit_security.py",
+        "description": "Security auditing for APIs, collections, and specs with scoring",
+        "usage": "python scripts/audit_security.py [--api|--collection|--spec|--all-collections|--all-apis] <ID>",
+        "examples": [
+          "python scripts/audit_security.py --api <api-id>",
+          "python scripts/audit_security.py --collection <collection-id>",
+          "python scripts/audit_security.py --all-collections"
+        ]
+      }
+    ],
+    "deployment": [
+      {
+        "name": "manage_mocks",
+        "script": "scripts/manage_mocks.py",
+        "description": "Create and manage mock servers for API simulation",
+        "usage": "python scripts/manage_mocks.py [--list|--get|--create|--update|--delete] [OPTIONS]",
+        "examples": [
+          "python scripts/manage_mocks.py --list",
+          "python scripts/manage_mocks.py --create --name='Payment Mock' --collection=<id>",
+          "python scripts/manage_mocks.py --create --name='Test Mock' --collection=<id> --private --delay=1000"
+        ]
+      }
+    ],
+    "monitoring": [
+      {
+        "name": "manage_monitors",
+        "script": "scripts/manage_monitors.py",
+        "description": "Monitor management and analysis with health checks",
+        "usage": "python scripts/manage_monitors.py [--list|--get|--create|--update|--delete|--analyze] [OPTIONS]",
+        "examples": [
+          "python scripts/manage_monitors.py --list",
+          "python scripts/manage_monitors.py --get <monitor-id>",
+          "python scripts/manage_monitors.py --analyze <monitor-id> --limit=10"
+        ]
+      }
+    ],
+    "documentation": [
+      {
+        "name": "publish_docs",
+        "script": "scripts/publish_docs.py",
+        "description": "Publish documentation and generate changelogs",
+        "usage": "python scripts/publish_docs.py [--publish|--status|--compare|--changelog] [OPTIONS]",
+        "examples": [
+          "python scripts/publish_docs.py --collection <id> --publish",
+          "python scripts/publish_docs.py --collection <id> --status",
+          "python scripts/publish_docs.py --compare --old <id1> --new <id2>",
+          "python scripts/publish_docs.py --changelog --api <api-id>"
+        ]
+      }
+    ]
+  },
+  "setup": {
+    "requirements": "requirements.txt",
+    "env_file": ".env.example",
+    "env_vars": {
+      "POSTMAN_API_KEY": {
+        "required": true,
+        "description": "Postman API key (get from https://go.postman.co/settings/me/api-keys)"
+      },
+      "POSTMAN_WORKSPACE_ID": {
+        "required": false,
+        "description": "Default workspace ID (optional)"
+      }
+    }
+  },
+  "integration": {
+    "documentation": "docs/MULTI_AGENT_SETUP.md",
+    "claude_code": {
+      "method": "slash_command",
+      "status": "production",
+      "location": ".claude/commands/postman.md",
+      "install": "cp -r .claude ~/",
+      "usage": "/postman",
+      "docs": "docs/MULTI_AGENT_SETUP.md#claude-code-slash-command"
+    },
+    "cursor": {
+      "method": "composer_rules",
+      "status": "production",
+      "location": ".cursorrules",
+      "install": "Auto-detected (file included)",
+      "usage": "Reference tools in natural language",
+      "docs": "docs/MULTI_AGENT_SETUP.md#cursor-composer-rules"
+    },
+    "gemini": {
+      "method": "json_manifest",
+      "status": "compatible",
+      "install": "pip install -r requirements.txt && cp .env.example .env",
+      "usage": "Reference tools.json in prompts",
+      "docs": "docs/MULTI_AGENT_SETUP.md#google-gemini-code-assist"
+    },
+    "mcp": {
+      "method": "mcp_server",
+      "status": "planned",
+      "config": "mcp_config.example.json",
+      "notes": "Can be converted to MCP server for universal compatibility",
+      "docs": "docs/MULTI_AGENT_SETUP.md#universal-mcp-server-future"
+    },
+    "direct_cli": {
+      "method": "command_line",
+      "status": "universal",
+      "install": "pip install -r requirements.txt && cp .env.example .env",
+      "usage": "python scripts/<script-name>.py --help",
+      "docs": "docs/MULTI_AGENT_SETUP.md#direct-cli-usage"
+    }
+  },
+  "lifecycle_coverage": {
+    "define": ["list_collections", "list_workspaces"],
+    "design": ["manage_api", "manage_spec", "validate_schema", "detect_breaking_changes", "manage_collection_workflow"],
+    "develop": ["manage_environments", "manage_collections", "generate_code"],
+    "test": ["run_collection"],
+    "secure": ["audit_security"],
+    "deploy": ["manage_mocks"],
+    "observe": ["manage_monitors"],
+    "distribute": ["publish_docs"]
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "name": "postman-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for Postman API lifecycle management",
+  "status": "planned",
+  "protocol": "mcp",
+  "transport": {
+    "type": "stdio",
+    "command": "python",
+    "args": ["mcp/server.py"]
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": true,
+    "prompts": false
+  },
+  "tools": [
+    {
+      "name": "list_collections",
+      "description": "List all Postman collections, environments, monitors, and APIs",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "all": {
+            "type": "boolean",
+            "description": "List all resource types"
+          },
+          "environments": {
+            "type": "boolean",
+            "description": "List only environments"
+          },
+          "monitors": {
+            "type": "boolean",
+            "description": "List only monitors"
+          },
+          "apis": {
+            "type": "boolean",
+            "description": "List only APIs"
+          }
+        }
+      }
+    },
+    {
+      "name": "create_collection",
+      "description": "Create a new Postman collection",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Collection name",
+            "required": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Collection description"
+          }
+        },
+        "required": ["name"]
+      }
+    },
+    {
+      "name": "run_collection",
+      "description": "Execute collection test runs with optional environment",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string",
+            "description": "Collection name or ID",
+            "required": true
+          },
+          "environment": {
+            "type": "string",
+            "description": "Environment name or ID"
+          }
+        },
+        "required": ["collection"]
+      }
+    },
+    {
+      "name": "generate_code",
+      "description": "Generate code snippets from collections in multiple languages",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string",
+            "description": "Collection ID",
+            "required": true
+          },
+          "language": {
+            "type": "string",
+            "enum": ["curl", "python", "javascript", "nodejs", "go"],
+            "description": "Programming language"
+          },
+          "all": {
+            "type": "boolean",
+            "description": "Generate for all languages"
+          }
+        },
+        "required": ["collection"]
+      }
+    },
+    {
+      "name": "audit_security",
+      "description": "Security auditing for APIs, collections, and specs with scoring",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "api": {
+            "type": "string",
+            "description": "API ID to audit"
+          },
+          "collection": {
+            "type": "string",
+            "description": "Collection ID to audit"
+          },
+          "spec": {
+            "type": "string",
+            "description": "Spec ID to audit"
+          },
+          "all_collections": {
+            "type": "boolean",
+            "description": "Audit all collections"
+          },
+          "all_apis": {
+            "type": "boolean",
+            "description": "Audit all APIs"
+          }
+        }
+      }
+    },
+    {
+      "name": "create_mock",
+      "description": "Create mock server for API simulation",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Mock server name",
+            "required": true
+          },
+          "collection": {
+            "type": "string",
+            "description": "Collection ID",
+            "required": true
+          },
+          "private": {
+            "type": "boolean",
+            "description": "Make mock server private"
+          },
+          "delay": {
+            "type": "number",
+            "description": "Response delay in milliseconds"
+          }
+        },
+        "required": ["name", "collection"]
+      }
+    },
+    {
+      "name": "validate_schema",
+      "description": "Validate OpenAPI specifications for correctness and best practices",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "api": {
+            "type": "string",
+            "description": "API ID to validate"
+          },
+          "spec": {
+            "type": "string",
+            "description": "Spec ID to validate"
+          },
+          "file": {
+            "type": "string",
+            "description": "Local file path to validate"
+          }
+        }
+      }
+    },
+    {
+      "name": "detect_breaking_changes",
+      "description": "Detect breaking changes between API versions",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "api": {
+            "type": "string",
+            "description": "API ID"
+          },
+          "old_version": {
+            "type": "string",
+            "description": "Old version ID"
+          },
+          "new_version": {
+            "type": "string",
+            "description": "New version ID"
+          },
+          "spec": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Two spec IDs to compare"
+          },
+          "collection": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Two collection IDs to compare"
+          },
+          "file": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Two file paths to compare"
+          }
+        }
+      }
+    }
+  ],
+  "resources": [
+    {
+      "name": "workspaces",
+      "description": "Access to Postman workspaces",
+      "uri": "postman://workspaces/*"
+    },
+    {
+      "name": "collections",
+      "description": "Access to Postman collections",
+      "uri": "postman://collections/*"
+    },
+    {
+      "name": "environments",
+      "description": "Access to Postman environments",
+      "uri": "postman://environments/*"
+    }
+  ],
+  "configuration": {
+    "required": {
+      "POSTMAN_API_KEY": {
+        "type": "string",
+        "description": "Postman API key from https://go.postman.co/settings/me/api-keys"
+      }
+    },
+    "optional": {
+      "POSTMAN_WORKSPACE_ID": {
+        "type": "string",
+        "description": "Default workspace ID"
+      },
+      "POSTMAN_BASE_URL": {
+        "type": "string",
+        "default": "https://api.postman.com",
+        "description": "API base URL"
+      },
+      "POSTMAN_TIMEOUT": {
+        "type": "number",
+        "default": 30,
+        "description": "Request timeout in seconds"
+      },
+      "POSTMAN_MAX_RETRIES": {
+        "type": "number",
+        "default": 3,
+        "description": "Max retry attempts"
+      }
+    }
+  },
+  "notes": {
+    "implementation_status": "This is a planned feature. The MCP server will be implemented in a future release.",
+    "current_workaround": "Use the direct CLI scripts or slash command for Claude Code",
+    "expected_benefits": [
+      "Universal compatibility with any MCP-enabled agent",
+      "Native tool integration",
+      "Type-safe parameters",
+      "Automatic tool discovery",
+      "Better error handling",
+      "Streaming support"
+    ],
+    "implementation_files": [
+      "mcp/server.py - Main MCP server implementation",
+      "mcp/tools/ - Individual tool wrappers",
+      "mcp/resources/ - Resource handlers",
+      "mcp/README.md - MCP-specific documentation"
+    ]
+  }
+}

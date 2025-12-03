@@ -8,13 +8,10 @@ This toolkit works with multiple AI coding agents. **Choose your setup guide:**
 
 | Agent | Status | Setup Guide |
 |-------|--------|-------------|
-| **Claude Code** | ✅ Production | **[Setup Guide →](docs/SETUP_CLAUDE_CODE.md)** |
-| **Cursor** | ✅ Production | **[Setup Guide →](docs/SETUP_CURSOR.md)** |
-| **Gemini** | ✅ Compatible | **[Setup Guide →](docs/SETUP_GEMINI.md)** |
-| **Direct CLI** | ✅ Universal | See "Direct Script Execution" below |
-| **MCP Server** | 🚧 Planned | [Multi-Agent Guide](docs/MULTI_AGENT_SETUP.md) |
-
-📖 **[Complete Multi-Agent Guide](docs/MULTI_AGENT_SETUP.md)** - All integration options
+| **Claude Code** | ✅ Production | **[Setup Guide →](claude-code-setup/SETUP_CLAUDE_CODE.md)** |
+| **Cursor** | ✅ Production | **[Setup Guide →](cursor-setup/SETUP_CURSOR.md)** |
+| **Gemini** | ✅ Compatible | **[Setup Guide →](gemini-cli-setup/SETUP_GEMINI.md)** |
+| **Direct CLI** | ✅ Universal | See "Direct CLI" below |
 
 ## Features
 
@@ -52,9 +49,9 @@ This toolkit works with multiple AI coding agents. **Choose your setup guide:**
    ```
 
 4. **Choose your agent setup** (or use CLI directly)
-   - **[Claude Code Setup →](docs/SETUP_CLAUDE_CODE.md)**
-   - **[Cursor Setup →](docs/SETUP_CURSOR.md)**
-   - **[Gemini Setup →](docs/SETUP_GEMINI.md)**
+   - **[Claude Code Setup →](claude-code-setup/SETUP_CLAUDE_CODE.md)**
+   - **[Cursor Setup →](cursor-setup/SETUP_CURSOR.md)**
+   - **[Gemini Setup →](gemini-cli-setup/SETUP_GEMINI.md)**
 
 ---
 
@@ -67,7 +64,7 @@ This toolkit works with multiple AI coding agents. **Choose your setup guide:**
 List all my collections
 ```
 
-**More examples**: [Claude Code Setup Guide →](docs/SETUP_CLAUDE_CODE.md)
+**More examples**: [Claude Code Setup Guide →](claude-code-setup/SETUP_CLAUDE_CODE.md)
 
 ---
 
@@ -77,7 +74,7 @@ List all my collections
 Use Postman tools to create a mock server for my Payment API
 ```
 
-**More examples**: [Cursor Setup Guide →](docs/SETUP_CURSOR.md)
+**More examples**: [Cursor Setup Guide →](cursor-setup/SETUP_CURSOR.md)
 
 ---
 
@@ -89,7 +86,7 @@ Use Postman tools to create a mock server for my Payment API
 Use the list_collections.py script to show all my collections
 ```
 
-**More examples**: [Gemini Setup Guide →](docs/SETUP_GEMINI.md)
+**More examples**: [Gemini Setup Guide →](gemini-cli-setup/SETUP_GEMINI.md)
 
 ---
 
@@ -404,15 +401,13 @@ Contributions are welcome! Please:
 ## Documentation
 
 ### Setup Guides by Agent
-- 📘 **[Claude Code Setup](docs/SETUP_CLAUDE_CODE.md)** - Slash command with natural language
-- 📗 **[Cursor Setup](docs/SETUP_CURSOR.md)** - Auto-detected IDE integration
-- 📙 **[Gemini Setup](docs/SETUP_GEMINI.md)** - JSON manifest integration
-- 📕 **[Multi-Agent Guide](docs/MULTI_AGENT_SETUP.md)** - All integration options
+- 📘 **[Claude Code Setup](claude-code-setup/SETUP_CLAUDE_CODE.md)** - Slash command with natural language
+- 📗 **[Cursor Setup](cursor-setup/SETUP_CURSOR.md)** - Auto-detected IDE integration
+- 📙 **[Gemini/CLI Setup](gemini-cli-setup/SETUP_GEMINI.md)** - JSON manifest integration
 
 ### Technical Documentation
 - 🔧 **[tools.json](tools.json)** - Universal tool manifest
 - 📊 **[API Lifecycle Coverage](API_LIFECYCLE_COVERAGE.md)** - 100% coverage analysis
-- 🎯 **[Multi-Agent Status](MULTI_AGENT_STATUS.md)** - Compatibility matrix
 
 ## Support
 

@@ -4,13 +4,17 @@ A universal toolkit for managing your complete Postman API lifecycle. Works with
 
 ## 🌐 Multi-Agent Compatibility
 
-✅ **Claude Code** - Slash command with natural language interface
-✅ **Cursor** - Auto-detected composer rules
-✅ **Gemini** - JSON manifest integration
-✅ **Direct CLI** - Universal command-line access
-🚧 **MCP Server** - Planned for universal agent compatibility
+This toolkit works with multiple AI coding agents. **Choose your setup guide:**
 
-📖 **[Multi-Agent Setup Guide](docs/MULTI_AGENT_SETUP.md)** - Choose your integration method
+| Agent | Status | Setup Guide |
+|-------|--------|-------------|
+| **Claude Code** | ✅ Production | **[Setup Guide →](docs/SETUP_CLAUDE_CODE.md)** |
+| **Cursor** | ✅ Production | **[Setup Guide →](docs/SETUP_CURSOR.md)** |
+| **Gemini** | ✅ Compatible | **[Setup Guide →](docs/SETUP_GEMINI.md)** |
+| **Direct CLI** | ✅ Universal | See "Direct Script Execution" below |
+| **MCP Server** | 🚧 Planned | [Multi-Agent Guide](docs/MULTI_AGENT_SETUP.md) |
+
+📖 **[Complete Multi-Agent Guide](docs/MULTI_AGENT_SETUP.md)** - All integration options
 
 ## Features
 
@@ -21,92 +25,77 @@ A universal toolkit for managing your complete Postman API lifecycle. Works with
 - 🧪 **Test Execution** - Run collection tests with environments
 - 🔄 **Retry Logic** - Built-in retry handling for rate limits and network issues
 
-## Prerequisites
+## Quick Start
+
+### Prerequisites
 
 - **Python 3.7+** - Pre-installed on most systems
 - **Postman API Key** - Generate from your [Postman account settings](https://go.postman.co/settings/me/api-keys)
-- **AI Agent** (Optional) - Claude Code, Cursor, Gemini, or any other coding assistant
-  - See [Multi-Agent Setup Guide](docs/MULTI_AGENT_SETUP.md) for agent-specific installation
 
-**Note**: All tools work as standalone CLI scripts without any AI agent.
+### Installation
 
-## Installation
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url> postman-slash-command
+   cd postman-slash-command
+   ```
 
-### 1. Clone or Download
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```bash
-cd ~/your-projects-directory
-git clone <repository-url> postman-slash-command
-cd postman-slash-command
-```
+3. **Configure API key**
+   ```bash
+   cp .env.example .env
+   # Edit .env and add: POSTMAN_API_KEY=PMAK-your-key-here
+   ```
 
-Or download and extract the ZIP file to your desired location.
+4. **Choose your agent setup** (or use CLI directly)
+   - **[Claude Code Setup →](docs/SETUP_CLAUDE_CODE.md)**
+   - **[Cursor Setup →](docs/SETUP_CURSOR.md)**
+   - **[Gemini Setup →](docs/SETUP_GEMINI.md)**
 
-### 2. Install Dependencies (Optional)
+---
 
-```bash
-pip install -r requirements.txt
-```
+## Usage Examples
 
-Note: `python-dotenv` is optional - the scripts have a fallback parser for `.env` files.
-
-### 3. Configure Your API Key
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` and add your Postman API key:
-
-```env
-POSTMAN_API_KEY=PMAK-your-actual-api-key-here
-```
-
-### 4. Install the Slash Command
-
-Copy the `.claude` directory to your project:
-
-```bash
-# Option 1: For global access (recommended)
-cp -r .claude ~/
-
-# Option 2: For project-specific access
-cp -r .claude /path/to/your/project/
-```
-
-Alternatively, you can manually copy the slash command file:
-
-```bash
-mkdir -p ~/.claude/commands
-cp .claude/commands/postman.md ~/.claude/commands/
-```
-
-### 5. Verify Installation
-
-Open Claude Code and type `/postman` - you should see the command autocomplete.
-
-## Usage
-
-### In Claude Code
-
-Once installed, use the `/postman` command to access Postman functionality:
+### With Claude Code
 
 ```
 /postman
+List all my collections
 ```
 
-Then ask Claude to perform operations like:
+**More examples**: [Claude Code Setup Guide →](docs/SETUP_CLAUDE_CODE.md)
 
-- "List all my collections"
-- "Create a new collection called 'Payment API Tests'"
-- "Show me the details of collection abc123"
-- "Run tests for the 'User Authentication' collection"
-- "How are my monitors doing?"
-- "Create a new environment for staging"
+---
 
-### Direct Script Execution
+### With Cursor
 
-You can also run scripts directly from the command line:
+```
+Use Postman tools to create a mock server for my Payment API
+```
+
+**More examples**: [Cursor Setup Guide →](docs/SETUP_CURSOR.md)
+
+---
+
+### With Gemini
+
+```
+[Provide tools.json context first]
+
+Use the list_collections.py script to show all my collections
+```
+
+**More examples**: [Gemini Setup Guide →](docs/SETUP_GEMINI.md)
+
+---
+
+### Direct CLI (No Agent Required)
+
+Run scripts directly from the command line:
 
 ```bash
 # List all resources
@@ -412,13 +401,26 @@ Contributions are welcome! Please:
 
 [Your License Here]
 
+## Documentation
+
+### Setup Guides by Agent
+- 📘 **[Claude Code Setup](docs/SETUP_CLAUDE_CODE.md)** - Slash command with natural language
+- 📗 **[Cursor Setup](docs/SETUP_CURSOR.md)** - Auto-detected IDE integration
+- 📙 **[Gemini Setup](docs/SETUP_GEMINI.md)** - JSON manifest integration
+- 📕 **[Multi-Agent Guide](docs/MULTI_AGENT_SETUP.md)** - All integration options
+
+### Technical Documentation
+- 🔧 **[tools.json](tools.json)** - Universal tool manifest
+- 📊 **[API Lifecycle Coverage](API_LIFECYCLE_COVERAGE.md)** - 100% coverage analysis
+- 🎯 **[Multi-Agent Status](MULTI_AGENT_STATUS.md)** - Compatibility matrix
+
 ## Support
 
 - **Issues**: Report bugs or request features via GitHub Issues
-- **Documentation**: Full API reference at [Postman API Docs](https://www.postman.com/postman/workspace/postman-public-workspace/documentation/12959542-c8142d51-e97c-46b6-bd77-52bb66712c9a)
-- **Community**: Join the Postman Community at [community.postman.com](https://community.postman.com)
+- **Postman API Docs**: [Official Documentation](https://www.postman.com/postman/workspace/postman-public-workspace/documentation/12959542-c8142d51-e97c-46b6-bd77-52bb66712c9a)
+- **Community**: [Postman Community](https://community.postman.com)
 
 ## Acknowledgments
 
-Built for [Claude Code](https://claude.ai/claude-code) by Anthropic.
+Universal toolkit compatible with Claude Code, Cursor, Gemini, and other AI coding agents.
 Powered by the [Postman API](https://www.postman.com/postman/workspace/postman-public-workspace/api).
